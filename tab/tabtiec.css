@@ -1,0 +1,12 @@
+li a {
+    text-decoration: none;
+    color: black;
+}
+
+.tabtiec--active a {
+    font-weight: 600;
+}
+
+#destroy {
+    user-select: none;
+}

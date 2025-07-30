@@ -1,0 +1,33 @@
+.slideslung-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slideslung-track {
+    display: flex;
+    transition: transform ease 0.5s;
+}
+
+.slideslung-slide {
+    flex: 0 0 auto
+}
+
+.slideslung-prevBtn,
+.slideslung-nextBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.slideslung-prevBtn {
+    left: 10px;
+}
+
+.slideslung-nextBtn {
+    right: 10px;
+}
