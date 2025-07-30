@@ -16,7 +16,7 @@ function Slideslung(selector, option = {}) {
     this._init()
 }
 
-Slideslung.prototype._init = function() {
+Slideslung.prototype._init = function () {
     //add class 'slideslung-wrapper' to slide container
     this.container.classList.add('slideslung-wrapper')
 
@@ -24,7 +24,7 @@ Slideslung.prototype._init = function() {
     this._createNavigation()
 }
 
-Slideslung.prototype._createTrack = function() {
+Slideslung.prototype._createTrack = function () {
     //create track div
     this.track = document.createElement('div')
     this.track.className = 'slideslung-track'
@@ -39,7 +39,7 @@ Slideslung.prototype._createTrack = function() {
     this.container.appendChild(this.track)
 }
 
-Slideslung.prototype._createNavigation = function() {
+Slideslung.prototype._createNavigation = function () {
     const renderNavBtn = (btn, btnClass, btnContent) => {
         btn = document.createElement('button')
         btn.className = btnClass
@@ -55,22 +55,25 @@ Slideslung.prototype._createNavigation = function() {
     this.nextBtn.onclick = () => this.moveSlide(1)
 }
 
-Slideslung.prototype.moveSlide = function(step) {
-    //calculate current index, let its value >=0 and <=overflow element
-    this.currentIndex = Math.min(
-        Math.max(this.currentIndex + step, 0),
-        this.slides.length - this.option.items
-    )
-    
+Slideslung.prototype.moveSlide = function (step) {
+    if (this.option.loop) {
+        this.currentIndex = (this.currentIndex + step + this.slides.length) % this.slides.length
+    } else {
+        //calculate current index, let its value >=0 and <=overflow element
+        this.currentIndex = Math.min(
+            Math.max(this.currentIndex + step, 0),
+            this.slides.length - this.option.items
+        )
+    }
+
     //calculate offset for setting transformation
     this.offset = -(this.currentIndex * (100 / this.option.items))
     this.track.style.transform = `translateX(${this.offset}%)`
-    console.log(this.offset)
 }
 
 
 const mySlider = new Slideslung('#my-slider', {
-    items: 4,
+    items: 1,
     loop: true
 })
 console.log(mySlider)
